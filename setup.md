@@ -1,0 +1,490 @@
+
+=====================================
+함수형 언어 하스켈 프로그래밍 환경 갖추기
+         (윈도우즈 운영체제)
+=====================================
+
+
+0) 함수형 하스켈 프로그래밍 환경 설치 
+ - 윈도우즈 검색 창에 powershell을 타이핑 하면 메뉴가 나옴
+ - powershell 선택하여 실행 
+
+
+
+=====================================
+1) 작업 디렉토리 d:\work\hasekll 만들기  
+=====================================
+
+ - 보통 C 드라이브(C:) 보다 D 드라이브, E 드라이브에 저장소 공간이 많기 때문에
+   C 드라이브 이외의 드라이브에 작업 디렉토리를 만드세요.
+
+ - 가능하면 "드라이브명:\work\haskell" 경로의 작업 디렉토리를 만드시고 
+   특히 경로에 공백이나 특수 문자가 들어가지 않도록 유의해주세요.
+
+
+환경 설치에 필요한 파워쉘(powershell) 커맨드 
+
+ - cd    (디렉토리 변경)
+ - ls    (파일 목록 보기)
+ - mkdir (디렉토리 새로 만들기)
+ - move  (이름 변경 또는 다른 디렉토리 위치로 파일 이동) 
+ - d:    (D 드라이브로 현재 드라이브를 변경)
+   c:    (C 드라이브로 현재 드라이브를 변경)
+ - exit  (파워셀 종료)
+
+cd
+
+ - cd ..   바로 위 디렉토리로 이동 
+ - cd work  work 디렉토리로 이동 
+ - cd haskell
+
+mkdir
+ - mkdir work     work 디렉토리 만들기 
+ - mkdir haskell  haskell 디렉토리 만들기 
+
+move 
+ - move hasell haskell 
+
+   (디렉토리 이름을 hasell로 잘못 지정해 만든 경우 move 명령어로 이름을 변경 가능)
+
+
+파워셀을 실행하고 D:\work\haskell 디렉토리를 만들고 여기로 이동
+ 
+ - d:              d 드라이브로 이동
+ - cd \            d 드라이브로 맨 위 디렉토리를 현재 
+ - mkdir work      work 디렉토리를 만들기 
+ - cd work         현재 디렉토리를 work 디렉토리로 변경
+ - mkdir haskell   work 디렉토리 안에 haskell 디렉토리 만들기 
+ - cd haskell      현재 디렉토리를 haskell 디렉토리로 변경
+
+ [주의] 윈도우즈: 백슬래시(\)가 원화 표시처럼 보이지만 같은 문자입니다.
+ [주의] d:가 이나고 e: 등 다른 드라이브 이름도 가능함
+
+ (참고: 파워쉘에서 Ctrl+l을 누르면 화면을 clear 시킬 수 있습니다.)
+
+
+===========================
+2) stack 하스켈 프로그램 설치 
+===========================
+
+ 구글에서 키워드로 haskell stack으로 검색하여
+ The Haskell Tool Stack 웹 사이트로 들어가기
+
+ How to install 메뉴 링크로 들어간 다음 
+
+ Windws 64비트용 설치 프로그램을 다운로드 받아 실행하여 설치 
+
+ 파워쉘에서 명령어 stack 엔터를 치고 설치 여부를 확인
+
+ (파워쉘을 실행한 다음 stack을 설치하면 파워셀을 종료하고 다시 들어온
+ 다음에 stack 명령어를 테스트하세요.)
+
+
+==========================================
+3) GHC 하스켈 인터프리터 (GHCi) 를 실행해보기 
+==========================================
+
+  GHC
+   - GHC, Glasgow Haskell Compiler)
+
+  GHCi
+   - GHCi, GHC interpreter
+
+
+  파워셀을 실행하고 d:\work\haskell 디렉토리 안에서 아래 stack 명령어를 실행하여 
+  GHC와 GHCi를 설치하고 GHCi를 실행함
+
+  - stack exec -- ghci 
+
+  처음에는 GHC를 다운받아 설치하는 시간이 걸립니다.
+  되풀이해서 실행하면 바로 인터프리터를 실행할 수 있습니다. 
+
+
+    GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+    ghci> 
+  
+
+  - GHCi 명령어 
+
+    :load <파일이름>.hs
+    :reload
+
+    :type <식>
+
+    :{ 
+
+     <여러 줄을 입력>
+
+    :}
+
+    :?      ===> GHCi 명령어 목록 출력
+
+==================================================
+4) 하스켈 IDE(Integrated Development Environement) 
+==================================================
+
+ - (Microsoft) Visual Studio Code
+
+ - 구글: visual studio code 검색 -> 웹 사이트로 이동 -> Download ->
+   (윈도우즈) System용 64비트 다운받아 설치
+
+ - 왼쪽 맨 하단 (박스 4개 모양의 아이콘) Extension을 선택하여 하스켈
+   프로래밍 환경을 위한 플러그인들을 설치합니다.
+
+    1) Haskell을 검색해서 install 버튼을 눌러 Haskell 플러그인 설치
+       (Haskell Syntax Hightlighting 플러그인이 함께 자동으로 설치됩니다)
+
+    2) Hasskelly를 검색해서 install 버튼을 눌러 Haskell 플러그인 설치
+
+ - VS code를 실행
+
+ - Open Folder를 새로 만들어 작업 디렉토리를 엽니다. (예: D:\work\haskell\lecture1)
+
+ - Terminal -> New Terminal을 선택하여 VS code 안에서 Powershell을 실행합니다. 
+   (실행된 파워쉘 안에서 stack exec -- ghci를 실행해서 하스켈 식을 입력하고 실행할 수 있습니다.)
+
+ - 열린 폴더 안에서 Example.hs 파일을 만들고 간단한 하스켈 식을 작성한 다음 
+   파워쉘에서 
+
+     :load Example.hs
+
+   로 이 내용을 불러드릴 수 있습니다.
+
+   이 파일을 다시 편집하고 다시 불러들일 때는 파일 이름을 입력하지 않고 
+
+     :reload
+
+   만 치면 됩니다.
+
+
+
+===============================
+5) 하스켈 무크 사이트에 접속하기 
+===============================
+
+  - 구글에서 haskell mooc로 검색해서 Haskell MOOC 사이트로 이동
+ 
+
+  - 강의는 Part1과 Part2로 구성되어 있고, Part1 Basic을 위주로 공부합니다.
+
+    Part1으로 이동하세요. 
+
+
+  - Part1은 1강 ~ 8강으로 구성되어 있습니다. 
+
+
+  - 유튜브에 접속해서 유튜브 검색 창에 아래 키워드로 검색하시면 
+     Part1에 대한 동영상 강의를 보실 수 있습니다. 
+
+     검색 키워드:  하스켈 무크 haskell mooc
+
+    검색 결과에서 다음의 <재생목록>을 찾으세요.
+
+     재생목록:  함수형 프로그래밍, 하스켈 (Functional Programming, Haskell)
+
+   - 
+
+
+===============
+6) 공부 시작하기 
+===============
+
+ - Part1 - Lecture1 부터 동영상과 하스켈 무크 웹 사이트에 따라 공부하기!
+
+ - 
+
+
+===============
+7) Git, Github
+===============
+
+ - Git
+
+    : 프로그램을 개발하다보면 소스코드가 계속 변경되는데 모든 중간 버전들을 
+      다시 복구하거나 비교할 수 있도록 관리해주는 프로그램 
+
+ - Github 웹사이트 (git 서비스를 제공하는 웹사이트)
+
+    : https://github.com
+
+    : 본인 계정을 만드세요. 
+
+
+ - 구글 "Git 설치"를 키워드로 검색해서 git을 설치
+   
+   참고로 Standalone installer - 64-bit Git for Windows Setup을 선택
+
+ - 파워쉘을 띄워 git이 설치되었는지 확인 
+
+   아무 디렉토리에서나 git이라고 커맨드를 침
+
+ - d:\work 디렉토리로 이동 
+
+ - github 계정으로 로긴한다음 
+
+   https://github.com/kwanghoon로 이동하여 
+
+   <저장소>를 선택하고 
+
+   저장소 찾기 검색창에서 git을 입려하여 git을 이름으로 포함하는
+   저장소들 목록을 가저온면 oss_git_example 저장소를 찾을 수 있습니다.
+
+   oss_git_example을 fork하여 본인 github 계정의 oss_git_example
+   저장소를 만듭니다.
+
+ - d:\work 디렉토리로 이동한 다음 
+   fork해서 만든 github 서버에 위치한 oss_git_example 저장소를 
+   본인 로컬 컴퓨터 하드 디스크로 복제해옵니다. 
+
+ - git clone https://github.com/본인아이디/oss_git_example
+
+ - ls 커맨드를 쳐서 d:\work\oss_git_example이 생겼음을 확인 
+
+ - 이 디렉토리로 이동합니다.
+
+   cd oss_git_example
+
+ -  ls 
+
+       : 기존 파일들이 보입니다. 
+
+ -  git status
+
+       (가져온 저장소가 그대로라는 메시지를 확인할 수 있습니다.)
+       : nothing to commit: working tree clean 
+
+ -  폴더에 학번.txt 파일을 만듭니다. 내용은 작성하지 않습니다.
+
+ - git status
+
+       (가져온 저장소가 변경되었음을 확인할 수 있습니다.)
+       : Untracked files: 
+	    본인학번.txt 
+
+       (git 버전 관리 프로그램이 본인학번.txt 파일을 아직 관리 대상으로
+       보고 있지 않다는 뜻입니다.)
+
+ - git add 본인학번.txt 
+
+       (git 버전 관리 프로그램에게 본인학번.txt 파일을 관리 대상으로
+       포함시키라는 명령어)
+
+ - git status 
+
+      : Changeds to be committed: 
+	    본인학번.txt 
+
+       (git 버전 관리 프로그램이 본인학번.txt 파일을 관리 대상으로
+       보고 있다는 뜻입니다.)
+
+ - git commit -a -m "본인학번"
+
+      (이제부터 git 버전 관리 프로그램이 본인학번.txt 파일을
+      관리합니다.)
+
+    아직 author identity를 지정하지 않으면 
+    Author identity unknown이라는 에러가 뜹니다.
+
+    그러한 경우 아래 git confit 명령어 2가지를 진행해주세요.
+
+ -  git config --global user.email "본인 이메일 주소"
+  
+ -  git config --global user.name "본인 이름(영문)"
+
+ - 위의 에러가 난 경우라면 
+
+     git commit -a -m "본인학번"를 다시 시도해주세요.
+
+     커밋이 제대로 이루어졌습니다. 
+
+     [master ....] ....
+      1 file changed ....
+
+ - git status 
+
+     Your branch is ahead of 'origin/master' by 1 commit.
+     (본인 로컬 노트북의 oss_git_example이 
+      githbub.com의 oss_git_example 보다 
+      1 커밋만큼 변경되어 있다는 뜻입니다.)
+
+     origin/master ==> github.com의 oss_git_example입니다.
+
+ - git push origin master
+
+     (본인 로컬 노트북의 oss_git_example의 변경 사항을
+      githbub.com의 oss_git_example에 보내는 명령어)
+         
+     
+ - github.com 사이트의 본인 게정의 oss_git_example로 이동하시고
+   pull request 메뉴를 선택하고
+   풀리퀘스트(pull request) 생성을 하여
+
+   본인이 작성한 내용을 github.com/kwanghoon/oss_git_example으로 
+   보내 합쳐주세요라는 요청을 보냅니다. 
+
+
+   (kwanghoon은 kwanghoon의 계정에 pull request 요청이 들어온 것을
+   확인할 수 있습니다. 그 요청을 클릭하면 병합 요청 내용을 
+   확인할 수 있습니다. 어떤 내용이 추가되고 변경되었는지 등등.
+   확인 후 문제가 없으면 kwanghoon은 Merge pull request를 선택하여
+   요청들어온 사항을 kwanghoon의 oss_git_example에 병합 반영합니다.)
+
+ - 이 과정이 끝나면 본인이 변경한 내용을 kwanghoon의 저장소에도 
+   확인할 수 있습니다. 
+
+   본인과 kwanghoon 2자가 아니라 협업하는 또 다른 사람이 있을 경우 즉
+   3자가 협업할 경우 3자가 변경한 내용도 kwanghoon의 저장소에
+   반영했다면, 그 내용은 본인이 가지고 있지 않겠지요.
+
+   3자가 변경한 내용을 kwanghoon의 저장소에서 본인 저장소로 가져오는
+   방법은 pull request 방향만 바꾸고 동일하게 진행하면 가져올 수
+   있습니다.
+
+   여기까지 성공하면 github 저장소간의 서로 변경된 사항을 모두 동일하게 
+   맞출 수 있습니다. 
+
+
+   하지만 3자가 변경한 내용이 본인의 github 저장소에는 있지만 본인의
+   로컬 노트북에는 없습니다.
+
+   본인의 github 저장소에 변경된 내용을 본인의 로컬 노트북으로
+   내려받기 위해서 아래 명령어를 사용합니다.
+
+ - git pull 
+
+   (github.com/본인계정/oss_git_example의 변경 사항을 
+    로컬 노트북 oss_git_example로 가져옵니다.)
+
+   이때 github 저장소 URL 주소를 지정하지 않아도 됩니다.  왜냐하면
+   이전에 clone할 때 지정한 URL 주소를 본인 로컬 노트북 저장소에 이미
+   저장해놓았기 때문입니다.
+
+   (참고: git remote -v 명령어로 github 저장소 URL 주소를 확인할 수
+   있습니다.)
+
+
+
+ (참고만)
+ 
+ - git init  
+
+   (로컬 노트북에 디렉토리를 새로 만들고 이 디렉토리를 git으로
+   관리하고 싶다고 초기화하는 명령어)
+
+   (git clone으로 어떤 저장소를 가져왔으면 이미 git을 위한 초기화가 
+    다 되어 있습니다. 따라서 git init을 할 필요가 없었습니다.)
+
+
+===============
+8) 연습문제 풀이 
+===============
+
+
+매 강의가 끝나면 연습문제 풀이가 있습니다.
+이 연습문제 풀이를 위해 연습문제를 내려받고 설치하는 과정이 필요합니다.
+이 내용을 설명합니다.
+
+1.13 Working on the Exercises
+
+ 아래 git 명령어를 통해 핀란드 대학에서 제공하는 haskell-mooc 깃 저장소를 
+ 본인 로컬 컴퓨터에 클론/복제 내려받으세요.
+
+  - 작업 디렉토리 (예: D:\work\haskell\)로 이동하신 다음 아래 깃 명령어를 수행 (cd D:\work\haskell)
+
+  - git clone https://github.com/moocfi/haskell-mooc
+
+  - cd haskell-mooc
+
+$ ls
+CONTRIBUTING.md  LICENSE  README.md  exercises  img  part1.html  part2.html  style.css
+
+$ cd exercises/
+
+$ ls
+Examples       Set11b.hs      Set14aTest.hs  Set1Test.hs   Set4a.hs      Set6Test.hs   score.json
+Mooc           Set11bTest.hs  Set14b.hs      Set2a.hs      Set4aTest.hs  Set7.hs       stack.yaml
+Set1.hs        Set12.hs       Set14bTest.hs  Set2aTest.hs  Set4b.hs      Set7Test.hs   stack.yaml.lock
+Set10a.hs      Set12Test.hs   Set15.hs       Set2b.hs      Set4bTest.hs  Set8.hs       tests.cabal
+Set10aTest.hs  Set13a.hs      Set15Test.hs   Set2bTest.hs  Set5a.hs      Set8Test.hs
+Set10b.hs      Set13aTest.hs  Set16a.hs      Set3a.hs      Set5aTest.hs  Set9a.hs
+Set10bTest.hs  Set13b.hs      Set16aTest.hs  Set3aTest.hs  Set5b.hs      Set9aTest.hs
+Set11a.hs      Set13bTest.hs  Set16b.hs      Set3b.hs      Set5bTest.hs  Set9b.hs
+Set11aTest.hs  Set14a.hs      Set16bTest.hs  Set3bTest.hs  Set6.hs       Set9bTest.hs
+
+$ stack build  
+
+$ ls Set1.hs
+Set1.hs
+
+$ ls Set1Test.hs
+Set1Test.hs
+
+
+  - Set1.hs가 연습문제 파일이고
+  - Set1Test.hs가 연습문제 풀이가 맞았는지 확인해주는 테스트 파일입니다.
+
+
+ Set1.hs의 기존 내용을 최대한 변경하지 않고 필요한 부분만 변경해서 문제를 푸세요.
+
+  - 변경 가능한 부분 : 새로운 줄을 추가해서 작성
+                  todo라고 되어 있는 부분을 지우고 작성 
+                  등등 
+
+ Set1.hs를 작성하신 다음 아래 명령어로 답을 맞춰보세요.
+
+  - stack runhaskell Set1Test.sh
+
+ Set1에 11문제중 하나씩 풀고 위 명령어로 답을 맞춰보는 점신적으로 진행하세요.
+  - 중간에 풀기 어려운 문제가 있으면 일단 다음 문제로 넘어가도 됩니다. 
+
+ stack runhaskell Set1Test.hs 
+
+
+
+===================
+9) Troubleshootings
+===================
+
+haskell-mooc 연습문제를 풀기 전에 stack build 명령어를 내려 
+필요한 패키지를 내려받고 설치합니다. 
+
+윈도우즈 사용자 이름을 한글로 지정한 경우 stack build 명령어가 
+이 한글이 포함된 경로 (예: C:\Users\<한글아이디>)로 인해
+설치 중간에 에러가 발생합니다. 
+
+이때 한 가지 방법은 <한글아이디>를 <영문아이디>로 변경하고 아래의
+배치 파일 내용과 같이 환경 변수를 바꾸어준 다음 stack build 
+명령어로 실행하는 것입니다.
+
+ * 하스켈 무크 연습문제 디렉토리 예시
+    - E:\work\haskell\haskell-mooc\exercises\ 
+
+ * 한글 아이디
+    - 은탱
+
+ * 영문 아이디
+    - euntang
+
+
+================================================== 
+
+set APPDATA=C:\Users\euntang\AppData\Roaming
+
+set USERNAME=euntang
+
+set USERPROFILE=E:\Users\euntang
+
+set HOMEDRIVE=E:
+
+set HOMEPATH=\Users\euntang
+
+set LOCALAPPDATA=E:\Users\euntang\AppData\Local
+
+=================================================
+
+위 방법은 도스창 (파워쉘이 아닌)을 띄워 설정하고 stack build 명령어로 
+하스켈 무스 연습문제를 설치합니다.
+
+위 방법은 완전하지 않으며 파워쉘에서는 여전히 문제가 있습니다. 도스창에서
+동일한 하스켈 명령어를 사용하여야 하는 제한점이 있습니다.
+
