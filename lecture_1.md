@@ -1,0 +1,216 @@
+
+[하스켈 무크 가이드 노트]
+
+=========
+Lecture 1
+=========
+
+1.2절 
+
+
+하스켈 참고 문헌
+  A Gentle introduction to Haskell (번역본)
+   - http://wiki.reeseo.net/Haskell/%EA%B3%B5%EC%8B%9D%20%EC%9E%85%EB%AC%B8%EC%84%9C%20%EB%B2%88%EC%97%AD%EB%AC%B8
+
+
+   - https://www.haskell.org/tutorial/ (영어)
+
+1.3절
+
+ 강의 동영상 참고
+
+
+ 하스켈 stack 명령어
+
+  * GHCI 인터프리터 실행:  stack exec -- ghci
+  * 
+
+ 함수 호출 (function call)
+  * application               함수 호출 
+  * 철수 applies f to arg.    철수가 함수 f를 인자 arg를 가지고 호출하다.
+  * f is applied to arg.      함수를 인자 arg를 주어 호출합니다. 
+
+ 부분 적용 (Partial application)
+  * partial : (*2)에서 함수의 인자가 2개 필요한데, 1개만 주고 호출
+
+ 리스트 제시법 (list comprehension)
+  * (수학) 집합 조건 제시법 :  { x | 자연수에 속하는 x에 대하여 x는 짝수 }
+
+    (하스켈) 리스트 제시법  :  [ x | x <- [1..], even x ]
+
+      짝수 중 맨 앞 10개만 꺼내기 
+        take 10 [ x | x <- [1..], even x ]              
+
+      짝수 중 맨 앞 10개 제외하고(drop) 그 다음 10개 꺼내기 
+        take 10 (drop 10 [ x | x <- [1..], even x ])    
+
+  대수적 데이터타입 (algebraic datatype)
+
+   * data Character = Pororo | Pokemon | Unknown deriving Show
+
+     (참고: deriving Show는 화면에 출력하기 위해서 필요함.
+            화면에 프린트하지 않는다면 없어도 됨)
+
+  패턴 매칭(pattern matching)
+
+    menu 1 = Pororo
+    menu 2 = Pokemon
+    menu _ = Unknown
+
+  타입 클래스 
+
+   * 예) Show    
+
+         어떤 타입의 값을 화면에 출력하려면 print 함수가 필요. 
+
+         (위 대수적 데이터타입의) deriving Show는 여러분의 데이터
+         타입에 대해 자동으로 print 함수를 만들어주는 기능
+
+         data Character = Pororo | Pokemon | Unknown
+
+         와 같이 작성하고 Pororo를 GHCi에서 치면 print 할 수 없다는 에러 발생
+
+         data Character = Pororo | Pokemon | Unknown deriving Show
+
+         와 같이 작성하고 Pororo를 GHCi에서 치면 Pororo를 화면에 잘 출력함!
+
+
+
+1.9.5 Recursion (재귀)
+
+
+1. 팩토리얼 함수 
+
+[목표]
+
+ - factorial n = {- n! -} 
+
+[팩토리얼 함수의 특성을 분석 ]
+============================================
+(1) n=1 :  n! = 1                  base 
+
+(2) n>1 : n! =  n x (n-1)!         inductive
+============================================
+  
+n! = n * (n-1) * ... * 2 * 1
+
+(n-1)! = (n-1) * ... * 2 * 1
+
+[하스켈로 작성]
+
+ - factorial 1 = 1
+   factorial n = n * factorial (n-1)
+
+
+2. 제곱의 합
+
+[목표]
+
+ - squareSum n = {- 1^2 + 2^2 + ... + n^2 -}
+
+
+[1^2 + 2^2 + ... + n^2식의 특성을 분석]
+============================================
+(1) n=1 : 1^2 ==> 1  
+
+(2) n>1 : squareSum (n-1) + n^2
+============================================
+
+  squareSum n
+   = 1^2 + 2^2 + ... (n-1)^2 + n^2  
+   = ( 1^2 + 2^2 + ... (n-1)^2 ) + n^2  
+   = squareSum (n-1)             + n^2  
+
+
+[하스켈로 작성]
+ - squareSum 1 = 1
+   squareSum n = squareSum (n-1) + n^2 
+
+
+3. 피보나치 수열
+
+[배경]
+ - 피보나치 수열:  1 1 2 3 5 8 13 21 ...
+
+
+[목표]
+ - fibonacci n = {- n번째 피보나치 수열의 값 -}
+
+   피보나치 수열의 정의
+    n=1: 1번째 피보나치 수열의 값 = 1
+
+    n=2: 2번째 피보나치 수열의 값 = 1
+
+    n>2: 
+       n번째 피보나치 수열의 값 = 
+	n-1번째 피보나치 수열의 값 + n-2번째 피보나치 수열의 값
+
+ - 예시: fibonacci 3 = 2
+        fibonacci 7 = 13
+
+                1 2 3 4 5 6 7  8  ...
+ - 피보나치 수열:	1 1 2 3 5 8 13 21 ...
+                
+[하스켈로 옮겨보면]
+
+ - fibonacci 1 = 1
+   fibonacci 2 = 1
+   fibonacci n = fibonacci (n-1) + fibonacci (n-2)
+
+
+1.13 Working on the Exercises
+
+ 아래 git 명령어를 통해 핀란드 대학에서 제공하는 haskell-mooc 깃 저장소를 
+ 본인 로컬 컴퓨터에 클론/복제 내려받으세요.
+
+  - 작업 디렉토리 (예: D:\work\haskell\)로 이동하신 다음 아래 깃 명령어를 수행 (cd D:\work\haskell)
+
+  - git clone https://github.com/moocfi/haskell-mooc
+
+  - cd haskell-mooc
+
+$ ls
+CONTRIBUTING.md  LICENSE  README.md  exercises  img  part1.html  part2.html  style.css
+
+$ cd exercises/
+
+$ ls
+Examples       Set11b.hs      Set14aTest.hs  Set1Test.hs   Set4a.hs      Set6Test.hs   score.json
+Mooc           Set11bTest.hs  Set14b.hs      Set2a.hs      Set4aTest.hs  Set7.hs       stack.yaml
+Set1.hs        Set12.hs       Set14bTest.hs  Set2aTest.hs  Set4b.hs      Set7Test.hs   stack.yaml.lock
+Set10a.hs      Set12Test.hs   Set15.hs       Set2b.hs      Set4bTest.hs  Set8.hs       tests.cabal
+Set10aTest.hs  Set13a.hs      Set15Test.hs   Set2bTest.hs  Set5a.hs      Set8Test.hs
+Set10b.hs      Set13aTest.hs  Set16a.hs      Set3a.hs      Set5aTest.hs  Set9a.hs
+Set10bTest.hs  Set13b.hs      Set16aTest.hs  Set3aTest.hs  Set5b.hs      Set9aTest.hs
+Set11a.hs      Set13bTest.hs  Set16b.hs      Set3b.hs      Set5bTest.hs  Set9b.hs
+Set11aTest.hs  Set14a.hs      Set16bTest.hs  Set3bTest.hs  Set6.hs       Set9bTest.hs
+
+
+$ ls Set1.hs
+Set1.hs
+
+$ ls Set1Test.hs
+Set1Test.hs
+
+
+  - Set1.hs가 연습문제 파일이고
+  - Set1Test.hs가 연습문제 풀이가 맞았는지 확인해주는 테스트 파일입니다.
+
+
+ Set1.hs의 기존 내용을 최대한 변경하지 않고 필요한 부분만 변경해서 문제를 푸세요.
+
+  - 변경 가능한 부분 : 새로운 줄을 추가해서 작성
+                  todo라고 되어 있는 부분을 지우고 작성 
+                  등등 
+
+ Set1.hs를 작성하신 다음 아래 명령어로 답을 맞춰보세요.
+
+  - stack runhaskell Set1Test.sh
+
+ Set1에 11문제중 하나씩 풀고 위 명령어로 답을 맞춰보는 점신적으로 진행하세요.
+  - 중간에 풀기 어려운 문제가 있으면 일단 다음 문제로 넘어가도 됩니다. 
+
+ stack runhaskell Set1Test.hs 
+
+
+
